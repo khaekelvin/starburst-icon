@@ -3,7 +3,7 @@
   "bin": {
     "starburst-icon": "dist/cli/index.js"
   },
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Cute expressive starburst characters as React SVG components — 18 emotions, zero dependencies",
   "author": "",
   "license": "MIT",
