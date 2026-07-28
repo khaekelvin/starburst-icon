@@ -30,58 +30,73 @@ function generate(character, options = {}) {
   return { svg, seed, character: character.id };
 }
 
-// src/characters/starburst/path.ts
-var STARBURST_PATH = "M16 1.5l2.7 3.2 4.1-.7 1.4 3.9 4.1.8.1 4.2 3.3 2.6-1.5 3.9 2 3.7-3.1 2.8.6 4.1-4.1.6-1.5 3.9-4-1.2-2.7 3.2-2.7-3.2-4 1.2-1.5-3.9-4.1-.6.6-4.1-3.1-2.8 2-3.7-1.5-3.9 3.3-2.6.1-4.2 4.1-.8 1.4-3.9 4.1.7z";
-var STARBURST_VIEWBOX = "0 0 32 32";
-
 // src/characters/starburst/colors.ts
 var STARBURST_COLORS = {
-  /** Pastel pink — StarburstBadge1 (Determined) */
+  /** Pastel pink — StarburstDetermined */
   pastelPink: "#ED95F4",
-  /** Soft yellow — StarburstBadge2 (Happy) */
+  /** Soft yellow — StarburstHappy */
   softYellow: "#F3E777",
-  /** Electric blue — StarburstBadge3 (Quirky) */
+  /** Electric blue — StarburstQuirky */
   electricBlue: "#7ED7F5",
-  /** Sad red — SadRedStarburstBadge (Sad) */
+  /** Sad red — StarburstSad */
   sadRed: "#FF6B6B",
-  /** Mint green — StarburstBadge5 (Surprised) */
+  /** Mint green — StarburstSurprised */
   mint: "#B5EAD7",
-  /** Soft peach — StarburstBadge6 (Winking) */
+  /** Soft peach — StarburstWinking */
   peach: "#FFCBA4",
-  /** Lavender — StarburstBadge7 (Sleepy) */
+  /** Lavender — StarburstSleepy */
   lavender: "#C4B5FD",
-  /** Orange — StarburstBadge8 (Excited) */
+  /** Orange — StarburstExcited */
   orange: "#FFB347",
-  /** Angry red — StarburstBadge9 (Angry) */
+  /** Angry red — StarburstAngry */
   angryRed: "#FF4040",
-  /** Lemon yellow — StarburstBadge10 (Laughing) */
+  /** Lemon yellow — StarburstLaughing */
   lemon: "#FFE14D",
-  /** Lime green — StarburstBadge11 (Nervous) */
+  /** Lime green — StarburstNervous */
   lime: "#BAFAC8",
-  /** Rose pink — StarburstBadge12 (In Love) */
+  /** Rose pink — StarburstInLove */
   rose: "#FFB3C6",
-  /** Sky blue — StarburstBadge13 (Cool) */
+  /** Sky blue — StarburstCool */
   skyBlue: "#93C5FD",
-  /** Amber — StarburstBadge14 (Confused) */
+  /** Amber — StarburstConfused */
   amber: "#FDE68A",
-  /** Soft purple — StarburstBadge15 (Smug) */
+  /** Soft purple — StarburstSmug */
   softPurple: "#DDD6FE",
-  /** Pale blue — StarburstBadge16 (Crying) */
+  /** Pale blue — StarburstCrying */
   paleBlue: "#BFDBFE",
-  /** Pale cream — StarburstBadge17 (Scared) */
+  /** Pale cream — StarburstScared */
   cream: "#FFEDD5",
-  /** Light gray — StarburstBadge18 (Bored) */
+  /** Light gray — StarburstBored */
   gray: "#E5E7EB",
   /** Inverted dark — used for summary counter badges */
   dark: "#000000",
   /** Inverted light — stroke color for dark-fill badges */
   white: "#FFFFFF"
 };
-function StarburstBadge1({
+
+// src/utils/color.ts
+var COLOR_MAP = {};
+for (const [key, value] of Object.entries(STARBURST_COLORS)) {
+  COLOR_MAP[key.toLowerCase()] = value;
+}
+function starburstColor(name) {
+  return COLOR_MAP[name.toLowerCase()] ?? name;
+}
+function defineColors(colors) {
+  for (const [key, value] of Object.entries(colors)) {
+    COLOR_MAP[key.toLowerCase()] = value;
+  }
+}
+
+// src/characters/starburst/path.ts
+var STARBURST_PATH = "M16 1.5l2.7 3.2 4.1-.7 1.4 3.9 4.1.8.1 4.2 3.3 2.6-1.5 3.9 2 3.7-3.1 2.8.6 4.1-4.1.6-1.5 3.9-4-1.2-2.7 3.2-2.7-3.2-4 1.2-1.5-3.9-4.1-.6.6-4.1-3.1-2.8 2-3.7-1.5-3.9 3.3-2.6.1-4.2 4.1-.8 1.4-3.9 4.1.7z";
+var STARBURST_VIEWBOX = "0 0 32 32";
+function StarburstDetermined({
   color = "#ED95F4",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0"
 }) {
+  const _color = starburstColor(color);
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "svg",
     {
@@ -91,7 +106,7 @@ function StarburstBadge1({
       role: "img",
       "aria-label": "Determined starburst character",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: color }),
+        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: _color }),
         /* @__PURE__ */ jsxRuntime.jsx(
           "path",
           {
@@ -107,11 +122,12 @@ function StarburstBadge1({
     }
   );
 }
-function StarburstBadge2({
+function StarburstHappy({
   color = "#F3E777",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0"
 }) {
+  const _color = starburstColor(color);
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "svg",
     {
@@ -121,7 +137,7 @@ function StarburstBadge2({
       role: "img",
       "aria-label": "Happy starburst character",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: color }),
+        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: _color }),
         /* @__PURE__ */ jsxRuntime.jsx(
           "path",
           {
@@ -137,11 +153,12 @@ function StarburstBadge2({
     }
   );
 }
-function StarburstBadge3({
+function StarburstQuirky({
   color = "#7ED7F5",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0"
 }) {
+  const _color = starburstColor(color);
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "svg",
     {
@@ -151,7 +168,7 @@ function StarburstBadge3({
       role: "img",
       "aria-label": "Quirky starburst character",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: color }),
+        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: _color }),
         /* @__PURE__ */ jsxRuntime.jsx(
           "path",
           {
@@ -175,11 +192,12 @@ function StarburstBadge3({
     }
   );
 }
-function SadRedStarburstBadge({
+function StarburstSad({
   color = "#FF6B6B",
   strokeColor = "black",
   className = "w-4 h-4 shrink-0"
 }) {
+  const _color = starburstColor(color);
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "svg",
     {
@@ -189,7 +207,7 @@ function SadRedStarburstBadge({
       role: "img",
       "aria-label": "Sad starburst character",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: color }),
+        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: _color }),
         /* @__PURE__ */ jsxRuntime.jsx(
           "path",
           {
@@ -214,11 +232,12 @@ function SadRedStarburstBadge({
     }
   );
 }
-function StarburstBadge5({
+function StarburstSurprised({
   color = "#B5EAD7",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0"
 }) {
+  const _color = starburstColor(color);
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "svg",
     {
@@ -228,7 +247,7 @@ function StarburstBadge5({
       role: "img",
       "aria-label": "Surprised starburst character",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: color }),
+        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: _color }),
         /* @__PURE__ */ jsxRuntime.jsx(
           "path",
           {
@@ -245,11 +264,12 @@ function StarburstBadge5({
     }
   );
 }
-function StarburstBadge6({
+function StarburstWinking({
   color = "#FFCBA4",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0"
 }) {
+  const _color = starburstColor(color);
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "svg",
     {
@@ -259,7 +279,7 @@ function StarburstBadge6({
       role: "img",
       "aria-label": "Winking starburst character",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: color }),
+        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: _color }),
         /* @__PURE__ */ jsxRuntime.jsx(
           "path",
           {
@@ -292,11 +312,12 @@ function StarburstBadge6({
     }
   );
 }
-function StarburstBadge7({
+function StarburstSleepy({
   color = "#C4B5FD",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0"
 }) {
+  const _color = starburstColor(color);
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "svg",
     {
@@ -306,7 +327,7 @@ function StarburstBadge7({
       role: "img",
       "aria-label": "Sleepy starburst character",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: color }),
+        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: _color }),
         /* @__PURE__ */ jsxRuntime.jsx(
           "path",
           {
@@ -347,11 +368,12 @@ function StarburstBadge7({
     }
   );
 }
-function StarburstBadge8({
+function StarburstExcited({
   color = "#FFB347",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0"
 }) {
+  const _color = starburstColor(color);
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "svg",
     {
@@ -361,7 +383,7 @@ function StarburstBadge8({
       role: "img",
       "aria-label": "Excited starburst character",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: color }),
+        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: _color }),
         /* @__PURE__ */ jsxRuntime.jsx(
           "path",
           {
@@ -402,11 +424,12 @@ function StarburstBadge8({
     }
   );
 }
-function StarburstBadge9({
+function StarburstAngry({
   color = "#FF4040",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0"
 }) {
+  const _color = starburstColor(color);
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "svg",
     {
@@ -416,7 +439,7 @@ function StarburstBadge9({
       role: "img",
       "aria-label": "Angry starburst character",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: color }),
+        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: _color }),
         /* @__PURE__ */ jsxRuntime.jsx(
           "path",
           {
@@ -441,11 +464,12 @@ function StarburstBadge9({
     }
   );
 }
-function StarburstBadge10({
+function StarburstLaughing({
   color = "#FFE14D",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0"
 }) {
+  const _color = starburstColor(color);
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "svg",
     {
@@ -455,7 +479,7 @@ function StarburstBadge10({
       role: "img",
       "aria-label": "Laughing starburst character",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: color }),
+        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: _color }),
         /* @__PURE__ */ jsxRuntime.jsx(
           "path",
           {
@@ -496,11 +520,12 @@ function StarburstBadge10({
     }
   );
 }
-function StarburstBadge11({
+function StarburstNervous({
   color = "#BAFAC8",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0"
 }) {
+  const _color = starburstColor(color);
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "svg",
     {
@@ -510,7 +535,7 @@ function StarburstBadge11({
       role: "img",
       "aria-label": "Nervous starburst character",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: color }),
+        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: _color }),
         /* @__PURE__ */ jsxRuntime.jsx(
           "path",
           {
@@ -544,11 +569,12 @@ function StarburstBadge11({
     }
   );
 }
-function StarburstBadge12({
+function StarburstInLove({
   color = "#FFB3C6",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0"
 }) {
+  const _color = starburstColor(color);
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "svg",
     {
@@ -558,7 +584,7 @@ function StarburstBadge12({
       role: "img",
       "aria-label": "In love starburst character",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: color }),
+        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: _color }),
         /* @__PURE__ */ jsxRuntime.jsx(
           "path",
           {
@@ -589,11 +615,12 @@ function StarburstBadge12({
     }
   );
 }
-function StarburstBadge13({
+function StarburstCool({
   color = "#93C5FD",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0"
 }) {
+  const _color = starburstColor(color);
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "svg",
     {
@@ -603,7 +630,7 @@ function StarburstBadge13({
       role: "img",
       "aria-label": "Cool starburst character",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: color }),
+        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: _color }),
         /* @__PURE__ */ jsxRuntime.jsx("rect", { x: "7.5", y: "14", width: "8", height: "5", rx: "1", fill: strokeColor }),
         /* @__PURE__ */ jsxRuntime.jsx("rect", { x: "16.5", y: "14", width: "8", height: "5", rx: "1", fill: strokeColor }),
         /* @__PURE__ */ jsxRuntime.jsx(
@@ -638,11 +665,12 @@ function StarburstBadge13({
     }
   );
 }
-function StarburstBadge14({
+function StarburstConfused({
   color = "#FDE68A",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0"
 }) {
+  const _color = starburstColor(color);
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "svg",
     {
@@ -652,7 +680,7 @@ function StarburstBadge14({
       role: "img",
       "aria-label": "Confused starburst character",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: color }),
+        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: _color }),
         /* @__PURE__ */ jsxRuntime.jsx(
           "path",
           {
@@ -686,11 +714,12 @@ function StarburstBadge14({
     }
   );
 }
-function StarburstBadge15({
+function StarburstSmug({
   color = "#DDD6FE",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0"
 }) {
+  const _color = starburstColor(color);
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "svg",
     {
@@ -700,7 +729,7 @@ function StarburstBadge15({
       role: "img",
       "aria-label": "Smug starburst character",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: color }),
+        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: _color }),
         /* @__PURE__ */ jsxRuntime.jsx(
           "path",
           {
@@ -741,11 +770,12 @@ function StarburstBadge15({
     }
   );
 }
-function StarburstBadge16({
+function StarburstCrying({
   color = "#BFDBFE",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0"
 }) {
+  const _color = starburstColor(color);
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "svg",
     {
@@ -755,7 +785,7 @@ function StarburstBadge16({
       role: "img",
       "aria-label": "Crying starburst character",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: color }),
+        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: _color }),
         /* @__PURE__ */ jsxRuntime.jsx(
           "path",
           {
@@ -783,11 +813,12 @@ function StarburstBadge16({
     }
   );
 }
-function StarburstBadge17({
+function StarburstScared({
   color = "#FFEDD5",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0"
 }) {
+  const _color = starburstColor(color);
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "svg",
     {
@@ -797,7 +828,7 @@ function StarburstBadge17({
       role: "img",
       "aria-label": "Scared starburst character",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: color }),
+        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: _color }),
         /* @__PURE__ */ jsxRuntime.jsx(
           "path",
           {
@@ -814,11 +845,12 @@ function StarburstBadge17({
     }
   );
 }
-function StarburstBadge18({
+function StarburstBored({
   color = "#E5E7EB",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0"
 }) {
+  const _color = starburstColor(color);
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "svg",
     {
@@ -828,7 +860,7 @@ function StarburstBadge18({
       role: "img",
       "aria-label": "Bored starburst character",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: color }),
+        /* @__PURE__ */ jsxRuntime.jsx("path", { d: STARBURST_PATH, fill: _color }),
         /* @__PURE__ */ jsxRuntime.jsx(
           "path",
           {
@@ -861,36 +893,56 @@ function RandomStarburstBadge({
   const mod = badgeIndex % 3;
   const classNameProp = className !== void 0 ? { className } : {};
   if (mod === 0) {
-    return /* @__PURE__ */ jsxRuntime.jsx(StarburstBadge1, { color: "#ED95F4", strokeColor, ...classNameProp });
+    return /* @__PURE__ */ jsxRuntime.jsx(StarburstDetermined, { color: "#ED95F4", strokeColor, ...classNameProp });
   }
   if (mod === 1) {
-    return /* @__PURE__ */ jsxRuntime.jsx(StarburstBadge2, { color: "#F3E777", strokeColor, ...classNameProp });
+    return /* @__PURE__ */ jsxRuntime.jsx(StarburstHappy, { color: "#F3E777", strokeColor, ...classNameProp });
   }
-  return /* @__PURE__ */ jsxRuntime.jsx(StarburstBadge3, { color: "#7ED7F5", strokeColor, ...classNameProp });
+  return /* @__PURE__ */ jsxRuntime.jsx(StarburstQuirky, { color: "#7ED7F5", strokeColor, ...classNameProp });
 }
 
 exports.RandomStarburstBadge = RandomStarburstBadge;
 exports.STARBURST_COLORS = STARBURST_COLORS;
 exports.STARBURST_PATH = STARBURST_PATH;
 exports.STARBURST_VIEWBOX = STARBURST_VIEWBOX;
-exports.SadRedStarburstBadge = SadRedStarburstBadge;
-exports.StarburstBadge1 = StarburstBadge1;
-exports.StarburstBadge10 = StarburstBadge10;
-exports.StarburstBadge11 = StarburstBadge11;
-exports.StarburstBadge12 = StarburstBadge12;
-exports.StarburstBadge13 = StarburstBadge13;
-exports.StarburstBadge14 = StarburstBadge14;
-exports.StarburstBadge15 = StarburstBadge15;
-exports.StarburstBadge16 = StarburstBadge16;
-exports.StarburstBadge17 = StarburstBadge17;
-exports.StarburstBadge18 = StarburstBadge18;
-exports.StarburstBadge2 = StarburstBadge2;
-exports.StarburstBadge3 = StarburstBadge3;
-exports.StarburstBadge5 = StarburstBadge5;
-exports.StarburstBadge6 = StarburstBadge6;
-exports.StarburstBadge7 = StarburstBadge7;
-exports.StarburstBadge8 = StarburstBadge8;
-exports.StarburstBadge9 = StarburstBadge9;
+exports.SadRedStarburstBadge = StarburstSad;
+exports.StarburstAngry = StarburstAngry;
+exports.StarburstBadge1 = StarburstDetermined;
+exports.StarburstBadge10 = StarburstLaughing;
+exports.StarburstBadge11 = StarburstNervous;
+exports.StarburstBadge12 = StarburstInLove;
+exports.StarburstBadge13 = StarburstCool;
+exports.StarburstBadge14 = StarburstConfused;
+exports.StarburstBadge15 = StarburstSmug;
+exports.StarburstBadge16 = StarburstCrying;
+exports.StarburstBadge17 = StarburstScared;
+exports.StarburstBadge18 = StarburstBored;
+exports.StarburstBadge2 = StarburstHappy;
+exports.StarburstBadge3 = StarburstQuirky;
+exports.StarburstBadge5 = StarburstSurprised;
+exports.StarburstBadge6 = StarburstWinking;
+exports.StarburstBadge7 = StarburstSleepy;
+exports.StarburstBadge8 = StarburstExcited;
+exports.StarburstBadge9 = StarburstAngry;
+exports.StarburstBored = StarburstBored;
+exports.StarburstConfused = StarburstConfused;
+exports.StarburstCool = StarburstCool;
+exports.StarburstCrying = StarburstCrying;
+exports.StarburstDetermined = StarburstDetermined;
+exports.StarburstExcited = StarburstExcited;
+exports.StarburstHappy = StarburstHappy;
+exports.StarburstInLove = StarburstInLove;
+exports.StarburstLaughing = StarburstLaughing;
+exports.StarburstNervous = StarburstNervous;
+exports.StarburstQuirky = StarburstQuirky;
+exports.StarburstSad = StarburstSad;
+exports.StarburstScared = StarburstScared;
+exports.StarburstSleepy = StarburstSleepy;
+exports.StarburstSmug = StarburstSmug;
+exports.StarburstSurprised = StarburstSurprised;
+exports.StarburstWinking = StarburstWinking;
+exports.defineColors = defineColors;
 exports.generate = generate;
+exports.starburstColor = starburstColor;
 //# sourceMappingURL=index.cjs.map
 //# sourceMappingURL=index.cjs.map

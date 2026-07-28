@@ -1,9 +1,9 @@
-import React from "react";
 import type { StarburstProps } from "../types/index.js";
 import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.js";
+import { starburstColor } from "../utils/color.js";
 
 /**
- * **StarburstBadge10** — Laughing / LOL
+ * **StarburstLaughing** — Laughing / LOL
  *
  * High happy arched eyebrows, both eyes squinting shut (happy closed arcs),
  * and a very wide open belly-laugh smile.
@@ -11,14 +11,15 @@ import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.
  *
  * @example
  * ```tsx
- * <StarburstBadge10 color="#FFE14D" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstLaughing color="#FFE14D" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-export function StarburstBadge10({
+export function StarburstLaughing({
   color = "#FFE14D",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0",
 }: StarburstProps) {
+  const _color = starburstColor(color);
   return (
     <svg
       className={className}
@@ -28,7 +29,7 @@ export function StarburstBadge10({
       aria-label="Laughing starburst character"
     >
       {/* Starburst shape */}
-      <path d={STARBURST_PATH} fill={color} />
+      <path d={STARBURST_PATH} fill={_color} />
 
       {/* Eyebrows: high happy arches */}
       <path

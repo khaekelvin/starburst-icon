@@ -10,7 +10,7 @@
   "homepage": "https://github.com/yourusername/starburst#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/starburst.git",
+    "url": "git+https://github.com/khaekelvin/starburst-icon",
     "directory": "packages/starburst"
   },
   "keywords": [

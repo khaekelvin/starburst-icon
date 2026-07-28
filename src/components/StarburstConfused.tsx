@@ -1,9 +1,9 @@
-import React from "react";
 import type { StarburstProps } from "../types/index.js";
 import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.js";
+import { starburstColor } from "../utils/color.js";
 
 /**
- * **StarburstBadge14** — Confused
+ * **StarburstConfused** — Confused
  *
  * Asymmetric eyebrows (one arched, one angled down outward), mismatched dot
  * eyes (different sizes), and a wavy confused mouth.
@@ -11,14 +11,15 @@ import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.
  *
  * @example
  * ```tsx
- * <StarburstBadge14 color="#FDE68A" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstConfused color="#FDE68A" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-export function StarburstBadge14({
+export function StarburstConfused({
   color = "#FDE68A",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0",
 }: StarburstProps) {
+  const _color = starburstColor(color);
   return (
     <svg
       className={className}
@@ -28,7 +29,7 @@ export function StarburstBadge14({
       aria-label="Confused starburst character"
     >
       {/* Starburst shape */}
-      <path d={STARBURST_PATH} fill={color} />
+      <path d={STARBURST_PATH} fill={_color} />
 
       {/* Left eyebrow: high arch */}
       <path

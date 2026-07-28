@@ -1197,24 +1197,24 @@ ${r2}
 // src/cli/index.ts
 var import_picocolors = __toESM(require_picocolors());
 var EMOTIONS = [
-  { component: "StarburstBadge1", emotion: "Determined", color: "#ED95F4", stroke: "black" },
-  { component: "StarburstBadge2", emotion: "Happy", color: "#F3E777", stroke: "black" },
-  { component: "StarburstBadge3", emotion: "Quirky", color: "#7ED7F5", stroke: "black" },
-  { component: "SadRedStarburstBadge", emotion: "Sad", color: "#FF6B6B", stroke: "white" },
-  { component: "StarburstBadge5", emotion: "Surprised", color: "#B5EAD7", stroke: "black" },
-  { component: "StarburstBadge6", emotion: "Winking", color: "#FFCBA4", stroke: "black" },
-  { component: "StarburstBadge7", emotion: "Sleepy", color: "#C4B5FD", stroke: "black" },
-  { component: "StarburstBadge8", emotion: "Excited", color: "#FFB347", stroke: "black" },
-  { component: "StarburstBadge9", emotion: "Angry", color: "#FF4040", stroke: "black" },
-  { component: "StarburstBadge10", emotion: "Laughing", color: "#FFE14D", stroke: "black" },
-  { component: "StarburstBadge11", emotion: "Nervous", color: "#BAFAC8", stroke: "black" },
-  { component: "StarburstBadge12", emotion: "In Love", color: "#FFB3C6", stroke: "black" },
-  { component: "StarburstBadge13", emotion: "Cool", color: "#93C5FD", stroke: "black" },
-  { component: "StarburstBadge14", emotion: "Confused", color: "#FDE68A", stroke: "black" },
-  { component: "StarburstBadge15", emotion: "Smug", color: "#DDD6FE", stroke: "black" },
-  { component: "StarburstBadge16", emotion: "Crying", color: "#BFDBFE", stroke: "black" },
-  { component: "StarburstBadge17", emotion: "Scared", color: "#FFEDD5", stroke: "black" },
-  { component: "StarburstBadge18", emotion: "Bored", color: "#E5E7EB", stroke: "black" }
+  { component: "StarburstDetermined", emotion: "Determined", color: "#ED95F4", stroke: "black" },
+  { component: "StarburstHappy", emotion: "Happy", color: "#F3E777", stroke: "black" },
+  { component: "StarburstQuirky", emotion: "Quirky", color: "#7ED7F5", stroke: "black" },
+  { component: "StarburstSad", emotion: "Sad", color: "#FF6B6B", stroke: "white" },
+  { component: "StarburstSurprised", emotion: "Surprised", color: "#B5EAD7", stroke: "black" },
+  { component: "StarburstWinking", emotion: "Winking", color: "#FFCBA4", stroke: "black" },
+  { component: "StarburstSleepy", emotion: "Sleepy", color: "#C4B5FD", stroke: "black" },
+  { component: "StarburstExcited", emotion: "Excited", color: "#FFB347", stroke: "black" },
+  { component: "StarburstAngry", emotion: "Angry", color: "#FF4040", stroke: "black" },
+  { component: "StarburstLaughing", emotion: "Laughing", color: "#FFE14D", stroke: "black" },
+  { component: "StarburstNervous", emotion: "Nervous", color: "#BAFAC8", stroke: "black" },
+  { component: "StarburstInLove", emotion: "In Love", color: "#FFB3C6", stroke: "black" },
+  { component: "StarburstCool", emotion: "Cool", color: "#93C5FD", stroke: "black" },
+  { component: "StarburstConfused", emotion: "Confused", color: "#FDE68A", stroke: "black" },
+  { component: "StarburstSmug", emotion: "Smug", color: "#DDD6FE", stroke: "black" },
+  { component: "StarburstCrying", emotion: "Crying", color: "#BFDBFE", stroke: "black" },
+  { component: "StarburstScared", emotion: "Scared", color: "#FFEDD5", stroke: "black" },
+  { component: "StarburstBored", emotion: "Bored", color: "#E5E7EB", stroke: "black" }
 ];
 var COMPONENT_TYPES = [
   {

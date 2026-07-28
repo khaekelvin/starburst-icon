@@ -6,41 +6,41 @@
  * - Dark fills   → "white" stroke
  */
 export const STARBURST_COLORS = {
-  /** Pastel pink — StarburstBadge1 (Determined) */
+  /** Pastel pink — StarburstDetermined */
   pastelPink: "#ED95F4",
-  /** Soft yellow — StarburstBadge2 (Happy) */
+  /** Soft yellow — StarburstHappy */
   softYellow: "#F3E777",
-  /** Electric blue — StarburstBadge3 (Quirky) */
+  /** Electric blue — StarburstQuirky */
   electricBlue: "#7ED7F5",
-  /** Sad red — SadRedStarburstBadge (Sad) */
+  /** Sad red — StarburstSad */
   sadRed: "#FF6B6B",
-  /** Mint green — StarburstBadge5 (Surprised) */
+  /** Mint green — StarburstSurprised */
   mint: "#B5EAD7",
-  /** Soft peach — StarburstBadge6 (Winking) */
+  /** Soft peach — StarburstWinking */
   peach: "#FFCBA4",
-  /** Lavender — StarburstBadge7 (Sleepy) */
+  /** Lavender — StarburstSleepy */
   lavender: "#C4B5FD",
-  /** Orange — StarburstBadge8 (Excited) */
+  /** Orange — StarburstExcited */
   orange: "#FFB347",
-  /** Angry red — StarburstBadge9 (Angry) */
+  /** Angry red — StarburstAngry */
   angryRed: "#FF4040",
-  /** Lemon yellow — StarburstBadge10 (Laughing) */
+  /** Lemon yellow — StarburstLaughing */
   lemon: "#FFE14D",
-  /** Lime green — StarburstBadge11 (Nervous) */
+  /** Lime green — StarburstNervous */
   lime: "#BAFAC8",
-  /** Rose pink — StarburstBadge12 (In Love) */
+  /** Rose pink — StarburstInLove */
   rose: "#FFB3C6",
-  /** Sky blue — StarburstBadge13 (Cool) */
+  /** Sky blue — StarburstCool */
   skyBlue: "#93C5FD",
-  /** Amber — StarburstBadge14 (Confused) */
+  /** Amber — StarburstConfused */
   amber: "#FDE68A",
-  /** Soft purple — StarburstBadge15 (Smug) */
+  /** Soft purple — StarburstSmug */
   softPurple: "#DDD6FE",
-  /** Pale blue — StarburstBadge16 (Crying) */
+  /** Pale blue — StarburstCrying */
   paleBlue: "#BFDBFE",
-  /** Pale cream — StarburstBadge17 (Scared) */
+  /** Pale cream — StarburstScared */
   cream: "#FFEDD5",
-  /** Light gray — StarburstBadge18 (Bored) */
+  /** Light gray — StarburstBored */
   gray: "#E5E7EB",
   /** Inverted dark — used for summary counter badges */
   dark: "#000000",

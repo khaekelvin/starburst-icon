@@ -1,23 +1,24 @@
-import React from "react";
 import type { StarburstProps } from "../types/index.js";
 import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.js";
+import { starburstColor } from "../utils/color.js";
 
 /**
- * **StarburstBadge3** — Quirky / Asymmetric
+ * **StarburstQuirky** — Quirky / Asymmetric
  *
  * Left eye is a horizontal dash (-), right "eye" is a rounded open 'U' loop.
  * Default fill: electric blue `#7ED7F5`.
  *
  * @example
  * ```tsx
- * <StarburstBadge3 color="#7ED7F5" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstQuirky color="#7ED7F5" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-export function StarburstBadge3({
+export function StarburstQuirky({
   color = "#7ED7F5",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0",
 }: StarburstProps) {
+  const _color = starburstColor(color);
   return (
     <svg
       className={className}
@@ -27,7 +28,7 @@ export function StarburstBadge3({
       aria-label="Quirky starburst character"
     >
       {/* Starburst shape */}
-      <path d={STARBURST_PATH} fill={color} />
+      <path d={STARBURST_PATH} fill={_color} />
 
       {/* Left eye: horizontal dash (-) */}
       <path

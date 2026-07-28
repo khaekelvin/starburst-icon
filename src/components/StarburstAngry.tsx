@@ -1,9 +1,9 @@
-import React from "react";
 import type { StarburstProps } from "../types/index.js";
 import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.js";
+import { starburstColor } from "../utils/color.js";
 
 /**
- * **StarburstBadge9** — Angry / Furious
+ * **StarburstAngry** — Angry / Furious
  *
  * Very steep inward-angled eyebrows (more extreme than Determined),
  * small squinting dot eyes, and a straight grimace line.
@@ -11,14 +11,15 @@ import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.
  *
  * @example
  * ```tsx
- * <StarburstBadge9 color="#FF4040" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstAngry color="#FF4040" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-export function StarburstBadge9({
+export function StarburstAngry({
   color = "#FF4040",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0",
 }: StarburstProps) {
+  const _color = starburstColor(color);
   return (
     <svg
       className={className}
@@ -28,9 +29,9 @@ export function StarburstBadge9({
       aria-label="Angry starburst character"
     >
       {/* Starburst shape */}
-      <path d={STARBURST_PATH} fill={color} />
+      <path d={STARBURST_PATH} fill={_color} />
 
-      {/* Eyebrows: very steep angled V — more extreme than StarburstBadge1 */}
+      {/* Eyebrows: very steep angled V — more extreme than StarburstDetermined */}
       <path
         d="M8 12L14 16M24 12L18 16"
         stroke={strokeColor}

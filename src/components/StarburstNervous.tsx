@@ -1,9 +1,9 @@
-import React from "react";
 import type { StarburstProps } from "../types/index.js";
 import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.js";
+import { starburstColor } from "../utils/color.js";
 
 /**
- * **StarburstBadge11** — Nervous
+ * **StarburstNervous** — Nervous
  *
  * Asymmetric eyebrows (one arched, one flat), small dot eyes,
  * and a wavy nervous mouth.
@@ -11,14 +11,15 @@ import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.
  *
  * @example
  * ```tsx
- * <StarburstBadge11 color="#BAFAC8" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstNervous color="#BAFAC8" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-export function StarburstBadge11({
+export function StarburstNervous({
   color = "#BAFAC8",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0",
 }: StarburstProps) {
+  const _color = starburstColor(color);
   return (
     <svg
       className={className}
@@ -28,7 +29,7 @@ export function StarburstBadge11({
       aria-label="Nervous starburst character"
     >
       {/* Starburst shape */}
-      <path d={STARBURST_PATH} fill={color} />
+      <path d={STARBURST_PATH} fill={_color} />
 
       {/* Left eyebrow: arch */}
       <path

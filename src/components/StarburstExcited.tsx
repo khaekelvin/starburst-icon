@@ -1,23 +1,24 @@
-import React from "react";
 import type { StarburstProps } from "../types/index.js";
 import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.js";
+import { starburstColor } from "../utils/color.js";
 
 /**
- * **StarburstBadge8** — Excited / Sparkly
+ * **StarburstExcited** — Excited / Sparkly
  *
  * Very high arched eyebrows, cross-star shaped eyes (✦), and a wide open smile.
  * Default fill: orange `#FFB347`.
  *
  * @example
  * ```tsx
- * <StarburstBadge8 color="#FFB347" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstExcited color="#FFB347" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-export function StarburstBadge8({
+export function StarburstExcited({
   color = "#FFB347",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0",
 }: StarburstProps) {
+  const _color = starburstColor(color);
   return (
     <svg
       className={className}
@@ -27,7 +28,7 @@ export function StarburstBadge8({
       aria-label="Excited starburst character"
     >
       {/* Starburst shape */}
-      <path d={STARBURST_PATH} fill={color} />
+      <path d={STARBURST_PATH} fill={_color} />
 
       {/* Eyebrows: very high arches */}
       <path

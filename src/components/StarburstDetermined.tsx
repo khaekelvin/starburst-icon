@@ -1,23 +1,24 @@
-import React from "react";
 import type { StarburstProps } from "../types/index.js";
 import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.js";
+import { starburstColor } from "../utils/color.js";
 
 /**
- * **StarburstBadge1** — Determined / Intense
+ * **StarburstDetermined** — Determined / Intense
  *
  * Diagonal inward eyebrows (\ /) and solid dot eyes.
  * Default fill: pastel pink `#ED95F4`.
  *
  * @example
  * ```tsx
- * <StarburstBadge1 color="#ED95F4" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstDetermined color="#ED95F4" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-export function StarburstBadge1({
+export function StarburstDetermined({
   color = "#ED95F4",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0",
 }: StarburstProps) {
+  const _color = starburstColor(color);
   return (
     <svg
       className={className}
@@ -27,7 +28,7 @@ export function StarburstBadge1({
       aria-label="Determined starburst character"
     >
       {/* Starburst shape */}
-      <path d={STARBURST_PATH} fill={color} />
+      <path d={STARBURST_PATH} fill={_color} />
 
       {/* Eyebrows: diagonal inward \ / */}
       <path

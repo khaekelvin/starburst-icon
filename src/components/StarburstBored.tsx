@@ -1,9 +1,9 @@
-import React from "react";
 import type { StarburstProps } from "../types/index.js";
 import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.js";
+import { starburstColor } from "../utils/color.js";
 
 /**
- * **StarburstBadge18** — Bored / Unimpressed
+ * **StarburstBored** — Bored / Unimpressed
  *
  * Flat horizontal eyebrows, half-lidded narrow oval eyes (distinctly different
  * from Sleepy's fully-closed arcs), and a barely-there flat mouth.
@@ -11,14 +11,15 @@ import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.
  *
  * @example
  * ```tsx
- * <StarburstBadge18 color="#E5E7EB" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstBored color="#E5E7EB" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-export function StarburstBadge18({
+export function StarburstBored({
   color = "#E5E7EB",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0",
 }: StarburstProps) {
+  const _color = starburstColor(color);
   return (
     <svg
       className={className}
@@ -28,7 +29,7 @@ export function StarburstBadge18({
       aria-label="Bored starburst character"
     >
       {/* Starburst shape */}
-      <path d={STARBURST_PATH} fill={color} />
+      <path d={STARBURST_PATH} fill={_color} />
 
       {/* Eyebrows: flat, neutral, slightly low */}
       <path

@@ -1,23 +1,24 @@
-import React from "react";
 import type { StarburstProps } from "../types/index.js";
 import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.js";
+import { starburstColor } from "../utils/color.js";
 
 /**
- * **StarburstBadge7** — Sleepy / Tired
+ * **StarburstSleepy** — Sleepy / Tired
  *
  * Drooping inward eyebrows, both eyes closed as heavy arcs, and a small neutral mouth.
  * Default fill: lavender `#C4B5FD`.
  *
  * @example
  * ```tsx
- * <StarburstBadge7 color="#C4B5FD" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstSleepy color="#C4B5FD" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-export function StarburstBadge7({
+export function StarburstSleepy({
   color = "#C4B5FD",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0",
 }: StarburstProps) {
+  const _color = starburstColor(color);
   return (
     <svg
       className={className}
@@ -27,7 +28,7 @@ export function StarburstBadge7({
       aria-label="Sleepy starburst character"
     >
       {/* Starburst shape */}
-      <path d={STARBURST_PATH} fill={color} />
+      <path d={STARBURST_PATH} fill={_color} />
 
       {/* Eyebrows: inner ends droop slightly (tired look) */}
       <path

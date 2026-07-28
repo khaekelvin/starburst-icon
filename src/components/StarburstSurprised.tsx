@@ -1,23 +1,24 @@
-import React from "react";
 import type { StarburstProps } from "../types/index.js";
 import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.js";
+import { starburstColor } from "../utils/color.js";
 
 /**
- * **StarburstBadge5** — Surprised / Shocked
+ * **StarburstSurprised** — Surprised / Shocked
  *
  * Raised flat eyebrows, wide open dot eyes, and a small open-O mouth.
  * Default fill: mint `#B5EAD7`.
  *
  * @example
  * ```tsx
- * <StarburstBadge5 color="#B5EAD7" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstSurprised color="#B5EAD7" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-export function StarburstBadge5({
+export function StarburstSurprised({
   color = "#B5EAD7",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0",
 }: StarburstProps) {
+  const _color = starburstColor(color);
   return (
     <svg
       className={className}
@@ -27,7 +28,7 @@ export function StarburstBadge5({
       aria-label="Surprised starburst character"
     >
       {/* Starburst shape */}
-      <path d={STARBURST_PATH} fill={color} />
+      <path d={STARBURST_PATH} fill={_color} />
 
       {/* Eyebrows: raised horizontal lines */}
       <path

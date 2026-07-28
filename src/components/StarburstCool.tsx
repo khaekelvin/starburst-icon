@@ -1,9 +1,9 @@
-import React from "react";
 import type { StarburstProps } from "../types/index.js";
 import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.js";
+import { starburstColor } from "../utils/color.js";
 
 /**
- * **StarburstBadge13** — Cool
+ * **StarburstCool** — Cool
  *
  * No eyebrows (shades cover top of face), filled rectangular sunglass lenses
  * with a bridge and arms, and a slight smirk.
@@ -11,14 +11,15 @@ import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.
  *
  * @example
  * ```tsx
- * <StarburstBadge13 color="#93C5FD" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstCool color="#93C5FD" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-export function StarburstBadge13({
+export function StarburstCool({
   color = "#93C5FD",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0",
 }: StarburstProps) {
+  const _color = starburstColor(color);
   return (
     <svg
       className={className}
@@ -28,7 +29,7 @@ export function StarburstBadge13({
       aria-label="Cool starburst character"
     >
       {/* Starburst shape */}
-      <path d={STARBURST_PATH} fill={color} />
+      <path d={STARBURST_PATH} fill={_color} />
 
       {/* Left sunglass lens */}
       <rect x="7.5" y="14" width="8" height="5" rx="1" fill={strokeColor} />

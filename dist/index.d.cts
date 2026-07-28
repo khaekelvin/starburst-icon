@@ -1,4 +1,4 @@
-import React from 'react';
+import * as react from 'react';
 
 /**
  * A single layer of an SVG character (e.g. body, eyes, mouth).
@@ -97,14 +97,8 @@ interface StarburstResult {
  */
 declare function generate(character: StarburstCharacter, options?: StarburstOptions): StarburstResult;
 
-/**
- * The 12-pointed radial starburst SVG path.
- * Constructed on a 32×32 canvas, centered at (16, 16).
- * Top apex starts at (16, 1.5), alternating outer peaks and inner valleys clockwise.
- */
-declare const STARBURST_PATH = "M16 1.5l2.7 3.2 4.1-.7 1.4 3.9 4.1.8.1 4.2 3.3 2.6-1.5 3.9 2 3.7-3.1 2.8.6 4.1-4.1.6-1.5 3.9-4-1.2-2.7 3.2-2.7-3.2-4 1.2-1.5-3.9-4.1-.6.6-4.1-3.1-2.8 2-3.7-1.5-3.9 3.3-2.6.1-4.2 4.1-.8 1.4-3.9 4.1.7z";
-/** SVG viewBox for the 32×32 starburst canvas. */
-declare const STARBURST_VIEWBOX = "0 0 32 32";
+declare function starburstColor(name: string): string;
+declare function defineColors(colors: Record<string, string>): void;
 
 /**
  * Official Starburst color palette.
@@ -114,41 +108,41 @@ declare const STARBURST_VIEWBOX = "0 0 32 32";
  * - Dark fills   → "white" stroke
  */
 declare const STARBURST_COLORS: {
-    /** Pastel pink — StarburstBadge1 (Determined) */
+    /** Pastel pink — StarburstDetermined */
     readonly pastelPink: "#ED95F4";
-    /** Soft yellow — StarburstBadge2 (Happy) */
+    /** Soft yellow — StarburstHappy */
     readonly softYellow: "#F3E777";
-    /** Electric blue — StarburstBadge3 (Quirky) */
+    /** Electric blue — StarburstQuirky */
     readonly electricBlue: "#7ED7F5";
-    /** Sad red — SadRedStarburstBadge (Sad) */
+    /** Sad red — StarburstSad */
     readonly sadRed: "#FF6B6B";
-    /** Mint green — StarburstBadge5 (Surprised) */
+    /** Mint green — StarburstSurprised */
     readonly mint: "#B5EAD7";
-    /** Soft peach — StarburstBadge6 (Winking) */
+    /** Soft peach — StarburstWinking */
     readonly peach: "#FFCBA4";
-    /** Lavender — StarburstBadge7 (Sleepy) */
+    /** Lavender — StarburstSleepy */
     readonly lavender: "#C4B5FD";
-    /** Orange — StarburstBadge8 (Excited) */
+    /** Orange — StarburstExcited */
     readonly orange: "#FFB347";
-    /** Angry red — StarburstBadge9 (Angry) */
+    /** Angry red — StarburstAngry */
     readonly angryRed: "#FF4040";
-    /** Lemon yellow — StarburstBadge10 (Laughing) */
+    /** Lemon yellow — StarburstLaughing */
     readonly lemon: "#FFE14D";
-    /** Lime green — StarburstBadge11 (Nervous) */
+    /** Lime green — StarburstNervous */
     readonly lime: "#BAFAC8";
-    /** Rose pink — StarburstBadge12 (In Love) */
+    /** Rose pink — StarburstInLove */
     readonly rose: "#FFB3C6";
-    /** Sky blue — StarburstBadge13 (Cool) */
+    /** Sky blue — StarburstCool */
     readonly skyBlue: "#93C5FD";
-    /** Amber — StarburstBadge14 (Confused) */
+    /** Amber — StarburstConfused */
     readonly amber: "#FDE68A";
-    /** Soft purple — StarburstBadge15 (Smug) */
+    /** Soft purple — StarburstSmug */
     readonly softPurple: "#DDD6FE";
-    /** Pale blue — StarburstBadge16 (Crying) */
+    /** Pale blue — StarburstCrying */
     readonly paleBlue: "#BFDBFE";
-    /** Pale cream — StarburstBadge17 (Scared) */
+    /** Pale cream — StarburstScared */
     readonly cream: "#FFEDD5";
-    /** Light gray — StarburstBadge18 (Bored) */
+    /** Light gray — StarburstBored */
     readonly gray: "#E5E7EB";
     /** Inverted dark — used for summary counter badges */
     readonly dark: "#000000";
@@ -159,72 +153,81 @@ type StarburstFillColor = (typeof STARBURST_COLORS)[keyof typeof STARBURST_COLOR
 type StarburstStrokeColor = "black" | "white" | (string & Record<never, never>);
 
 /**
- * **StarburstBadge1** — Determined / Intense
+ * The 12-pointed radial starburst SVG path.
+ * Constructed on a 32×32 canvas, centered at (16, 16).
+ * Top apex starts at (16, 1.5), alternating outer peaks and inner valleys clockwise.
+ */
+declare const STARBURST_PATH = "M16 1.5l2.7 3.2 4.1-.7 1.4 3.9 4.1.8.1 4.2 3.3 2.6-1.5 3.9 2 3.7-3.1 2.8.6 4.1-4.1.6-1.5 3.9-4-1.2-2.7 3.2-2.7-3.2-4 1.2-1.5-3.9-4.1-.6.6-4.1-3.1-2.8 2-3.7-1.5-3.9 3.3-2.6.1-4.2 4.1-.8 1.4-3.9 4.1.7z";
+/** SVG viewBox for the 32×32 starburst canvas. */
+declare const STARBURST_VIEWBOX = "0 0 32 32";
+
+/**
+ * **StarburstDetermined** — Determined / Intense
  *
  * Diagonal inward eyebrows (\ /) and solid dot eyes.
  * Default fill: pastel pink `#ED95F4`.
  *
  * @example
  * ```tsx
- * <StarburstBadge1 color="#ED95F4" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstDetermined color="#ED95F4" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-declare function StarburstBadge1({ color, strokeColor, className, }: StarburstProps): React.JSX.Element;
+declare function StarburstDetermined({ color, strokeColor, className, }: StarburstProps): react.JSX.Element;
 
 /**
- * **StarburstBadge2** — Happy / Arched
+ * **StarburstHappy** — Happy / Arched
  *
  * Smooth cubic Bézier arch eyebrows (^ ^) and solid dot eyes.
  * Default fill: soft yellow `#F3E777`.
  *
  * @example
  * ```tsx
- * <StarburstBadge2 color="#F3E777" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstHappy color="#F3E777" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-declare function StarburstBadge2({ color, strokeColor, className, }: StarburstProps): React.JSX.Element;
+declare function StarburstHappy({ color, strokeColor, className, }: StarburstProps): react.JSX.Element;
 
 /**
- * **StarburstBadge3** — Quirky / Asymmetric
+ * **StarburstQuirky** — Quirky / Asymmetric
  *
  * Left eye is a horizontal dash (-), right "eye" is a rounded open 'U' loop.
  * Default fill: electric blue `#7ED7F5`.
  *
  * @example
  * ```tsx
- * <StarburstBadge3 color="#7ED7F5" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstQuirky color="#7ED7F5" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-declare function StarburstBadge3({ color, strokeColor, className, }: StarburstProps): React.JSX.Element;
+declare function StarburstQuirky({ color, strokeColor, className, }: StarburstProps): react.JSX.Element;
 
 /**
- * **SadRedStarburstBadge** — Sad / Frustrated
+ * **StarburstSad** — Sad / Frustrated
  *
  * Reverse diagonal eyebrows (/ \), solid dot eyes, and an inverted curve frown.
  * Default fill: sad red `#FF6B6B`.
  *
  * @example
  * ```tsx
- * <SadRedStarburstBadge color="#FF6B6B" strokeColor="black" className="w-4 h-4 shrink-0" />
+ * <StarburstSad color="#FF6B6B" strokeColor="black" className="w-4 h-4 shrink-0" />
  * ```
  */
-declare function SadRedStarburstBadge({ color, strokeColor, className, }: StarburstProps): React.JSX.Element;
+declare function StarburstSad({ color, strokeColor, className, }: StarburstProps): react.JSX.Element;
 
 /**
- * **StarburstBadge5** — Surprised / Shocked
+ * **StarburstSurprised** — Surprised / Shocked
  *
  * Raised flat eyebrows, wide open dot eyes, and a small open-O mouth.
  * Default fill: mint `#B5EAD7`.
  *
  * @example
  * ```tsx
- * <StarburstBadge5 color="#B5EAD7" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstSurprised color="#B5EAD7" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-declare function StarburstBadge5({ color, strokeColor, className, }: StarburstProps): React.JSX.Element;
+declare function StarburstSurprised({ color, strokeColor, className, }: StarburstProps): react.JSX.Element;
 
 /**
- * **StarburstBadge6** — Winking
+ * **StarburstWinking** — Winking
  *
  * Left eye closed (squinting arc), right eye open dot.
  * Arched right eyebrow, flat left eyebrow, and a smirk.
@@ -232,39 +235,39 @@ declare function StarburstBadge5({ color, strokeColor, className, }: StarburstPr
  *
  * @example
  * ```tsx
- * <StarburstBadge6 color="#FFCBA4" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstWinking color="#FFCBA4" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-declare function StarburstBadge6({ color, strokeColor, className, }: StarburstProps): React.JSX.Element;
+declare function StarburstWinking({ color, strokeColor, className, }: StarburstProps): react.JSX.Element;
 
 /**
- * **StarburstBadge7** — Sleepy / Tired
+ * **StarburstSleepy** — Sleepy / Tired
  *
  * Drooping inward eyebrows, both eyes closed as heavy arcs, and a small neutral mouth.
  * Default fill: lavender `#C4B5FD`.
  *
  * @example
  * ```tsx
- * <StarburstBadge7 color="#C4B5FD" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstSleepy color="#C4B5FD" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-declare function StarburstBadge7({ color, strokeColor, className, }: StarburstProps): React.JSX.Element;
+declare function StarburstSleepy({ color, strokeColor, className, }: StarburstProps): react.JSX.Element;
 
 /**
- * **StarburstBadge8** — Excited / Sparkly
+ * **StarburstExcited** — Excited / Sparkly
  *
  * Very high arched eyebrows, cross-star shaped eyes (✦), and a wide open smile.
  * Default fill: orange `#FFB347`.
  *
  * @example
  * ```tsx
- * <StarburstBadge8 color="#FFB347" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstExcited color="#FFB347" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-declare function StarburstBadge8({ color, strokeColor, className, }: StarburstProps): React.JSX.Element;
+declare function StarburstExcited({ color, strokeColor, className, }: StarburstProps): react.JSX.Element;
 
 /**
- * **StarburstBadge9** — Angry / Furious
+ * **StarburstAngry** — Angry / Furious
  *
  * Very steep inward-angled eyebrows (more extreme than Determined),
  * small squinting dot eyes, and a straight grimace line.
@@ -272,13 +275,13 @@ declare function StarburstBadge8({ color, strokeColor, className, }: StarburstPr
  *
  * @example
  * ```tsx
- * <StarburstBadge9 color="#FF4040" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstAngry color="#FF4040" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-declare function StarburstBadge9({ color, strokeColor, className, }: StarburstProps): React.JSX.Element;
+declare function StarburstAngry({ color, strokeColor, className, }: StarburstProps): react.JSX.Element;
 
 /**
- * **StarburstBadge10** — Laughing / LOL
+ * **StarburstLaughing** — Laughing / LOL
  *
  * High happy arched eyebrows, both eyes squinting shut (happy closed arcs),
  * and a very wide open belly-laugh smile.
@@ -286,13 +289,13 @@ declare function StarburstBadge9({ color, strokeColor, className, }: StarburstPr
  *
  * @example
  * ```tsx
- * <StarburstBadge10 color="#FFE14D" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstLaughing color="#FFE14D" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-declare function StarburstBadge10({ color, strokeColor, className, }: StarburstProps): React.JSX.Element;
+declare function StarburstLaughing({ color, strokeColor, className, }: StarburstProps): react.JSX.Element;
 
 /**
- * **StarburstBadge11** — Nervous
+ * **StarburstNervous** — Nervous
  *
  * Asymmetric eyebrows (one arched, one flat), small dot eyes,
  * and a wavy nervous mouth.
@@ -300,26 +303,26 @@ declare function StarburstBadge10({ color, strokeColor, className, }: StarburstP
  *
  * @example
  * ```tsx
- * <StarburstBadge11 color="#BAFAC8" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstNervous color="#BAFAC8" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-declare function StarburstBadge11({ color, strokeColor, className, }: StarburstProps): React.JSX.Element;
+declare function StarburstNervous({ color, strokeColor, className, }: StarburstProps): react.JSX.Element;
 
 /**
- * **StarburstBadge12** — In Love
+ * **StarburstInLove** — In Love
  *
  * No eyebrows, filled heart eyes, and a dreamy smile.
  * Default fill: rose pink `#FFB3C6`.
  *
  * @example
  * ```tsx
- * <StarburstBadge12 color="#FFB3C6" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstInLove color="#FFB3C6" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-declare function StarburstBadge12({ color, strokeColor, className, }: StarburstProps): React.JSX.Element;
+declare function StarburstInLove({ color, strokeColor, className, }: StarburstProps): react.JSX.Element;
 
 /**
- * **StarburstBadge13** — Cool
+ * **StarburstCool** — Cool
  *
  * No eyebrows (shades cover top of face), filled rectangular sunglass lenses
  * with a bridge and arms, and a slight smirk.
@@ -327,13 +330,13 @@ declare function StarburstBadge12({ color, strokeColor, className, }: StarburstP
  *
  * @example
  * ```tsx
- * <StarburstBadge13 color="#93C5FD" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstCool color="#93C5FD" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-declare function StarburstBadge13({ color, strokeColor, className, }: StarburstProps): React.JSX.Element;
+declare function StarburstCool({ color, strokeColor, className, }: StarburstProps): react.JSX.Element;
 
 /**
- * **StarburstBadge14** — Confused
+ * **StarburstConfused** — Confused
  *
  * Asymmetric eyebrows (one arched, one angled down outward), mismatched dot
  * eyes (different sizes), and a wavy confused mouth.
@@ -341,13 +344,13 @@ declare function StarburstBadge13({ color, strokeColor, className, }: StarburstP
  *
  * @example
  * ```tsx
- * <StarburstBadge14 color="#FDE68A" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstConfused color="#FDE68A" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-declare function StarburstBadge14({ color, strokeColor, className, }: StarburstProps): React.JSX.Element;
+declare function StarburstConfused({ color, strokeColor, className, }: StarburstProps): react.JSX.Element;
 
 /**
- * **StarburstBadge15** — Smug
+ * **StarburstSmug** — Smug
  *
  * Relaxed low-arched eyebrows, closed content eyes (arcs bowing upward),
  * and an asymmetric smug smirk.
@@ -355,13 +358,13 @@ declare function StarburstBadge14({ color, strokeColor, className, }: StarburstP
  *
  * @example
  * ```tsx
- * <StarburstBadge15 color="#DDD6FE" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstSmug color="#DDD6FE" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-declare function StarburstBadge15({ color, strokeColor, className, }: StarburstProps): React.JSX.Element;
+declare function StarburstSmug({ color, strokeColor, className, }: StarburstProps): react.JSX.Element;
 
 /**
- * **StarburstBadge16** — Crying
+ * **StarburstCrying** — Crying
  *
  * Sad inward-tilted eyebrows, small dot eyes, teardrop ellipses below each
  * eye, and a frown.
@@ -369,13 +372,13 @@ declare function StarburstBadge15({ color, strokeColor, className, }: StarburstP
  *
  * @example
  * ```tsx
- * <StarburstBadge16 color="#BFDBFE" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstCrying color="#BFDBFE" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-declare function StarburstBadge16({ color, strokeColor, className, }: StarburstProps): React.JSX.Element;
+declare function StarburstCrying({ color, strokeColor, className, }: StarburstProps): react.JSX.Element;
 
 /**
- * **StarburstBadge17** — Scared / Frightened
+ * **StarburstScared** — Scared / Frightened
  *
  * Very high arched eyebrows (higher than Surprised), large wide-open eyes,
  * and a big open-O mouth conveying genuine fear.
@@ -383,13 +386,13 @@ declare function StarburstBadge16({ color, strokeColor, className, }: StarburstP
  *
  * @example
  * ```tsx
- * <StarburstBadge17 color="#FFEDD5" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstScared color="#FFEDD5" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-declare function StarburstBadge17({ color, strokeColor, className, }: StarburstProps): React.JSX.Element;
+declare function StarburstScared({ color, strokeColor, className, }: StarburstProps): react.JSX.Element;
 
 /**
- * **StarburstBadge18** — Bored / Unimpressed
+ * **StarburstBored** — Bored / Unimpressed
  *
  * Flat horizontal eyebrows, half-lidded narrow oval eyes (distinctly different
  * from Sleepy's fully-closed arcs), and a barely-there flat mouth.
@@ -397,15 +400,15 @@ declare function StarburstBadge17({ color, strokeColor, className, }: StarburstP
  *
  * @example
  * ```tsx
- * <StarburstBadge18 color="#E5E7EB" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstBored color="#E5E7EB" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-declare function StarburstBadge18({ color, strokeColor, className, }: StarburstProps): React.JSX.Element;
+declare function StarburstBored({ color, strokeColor, className, }: StarburstProps): react.JSX.Element;
 
 interface RandomStarburstBadgeProps extends StarburstProps {
     /**
      * A numeric index used to deterministically select a badge variant.
-     * The selection cycles through Badge1 → Badge2 → Badge3 using `badgeIndex % 3`.
+     * The selection cycles through Determined → Happy → Quirky using `badgeIndex % 3`.
      * Same index always produces the same badge.
      */
     badgeIndex: number;
@@ -418,9 +421,9 @@ interface RandomStarburstBadgeProps extends StarburstProps {
  * should have a distinct but predictable badge.
  *
  * Variant cycle:
- * - `0` → StarburstBadge1 (pastel pink, determined)
- * - `1` → StarburstBadge2 (soft yellow, happy)
- * - `2` → StarburstBadge3 (electric blue, quirky)
+ * - `0` → StarburstDetermined (pastel pink)
+ * - `1` → StarburstHappy (soft yellow)
+ * - `2` → StarburstQuirky (electric blue)
  *
  * @example
  * ```tsx
@@ -429,6 +432,6 @@ interface RandomStarburstBadgeProps extends StarburstProps {
  * ))
  * ```
  */
-declare function RandomStarburstBadge({ badgeIndex, strokeColor, className, }: RandomStarburstBadgeProps): React.JSX.Element;
+declare function RandomStarburstBadge({ badgeIndex, strokeColor, className, }: RandomStarburstBadgeProps): react.JSX.Element;
 
-export { RandomStarburstBadge, STARBURST_COLORS, STARBURST_PATH, STARBURST_VIEWBOX, SadRedStarburstBadge, StarburstBadge1, StarburstBadge10, StarburstBadge11, StarburstBadge12, StarburstBadge13, StarburstBadge14, StarburstBadge15, StarburstBadge16, StarburstBadge17, StarburstBadge18, StarburstBadge2, StarburstBadge3, StarburstBadge5, StarburstBadge6, StarburstBadge7, StarburstBadge8, StarburstBadge9, type StarburstCharacter, type StarburstFillColor, type StarburstLayer, type StarburstOptions, type StarburstProps, type StarburstResult, type StarburstStrokeColor, generate };
+export { RandomStarburstBadge, STARBURST_COLORS, STARBURST_PATH, STARBURST_VIEWBOX, StarburstSad as SadRedStarburstBadge, StarburstAngry, StarburstDetermined as StarburstBadge1, StarburstLaughing as StarburstBadge10, StarburstNervous as StarburstBadge11, StarburstInLove as StarburstBadge12, StarburstCool as StarburstBadge13, StarburstConfused as StarburstBadge14, StarburstSmug as StarburstBadge15, StarburstCrying as StarburstBadge16, StarburstScared as StarburstBadge17, StarburstBored as StarburstBadge18, StarburstHappy as StarburstBadge2, StarburstQuirky as StarburstBadge3, StarburstSurprised as StarburstBadge5, StarburstWinking as StarburstBadge6, StarburstSleepy as StarburstBadge7, StarburstExcited as StarburstBadge8, StarburstAngry as StarburstBadge9, StarburstBored, type StarburstCharacter, StarburstConfused, StarburstCool, StarburstCrying, StarburstDetermined, StarburstExcited, type StarburstFillColor, StarburstHappy, StarburstInLove, StarburstLaughing, type StarburstLayer, StarburstNervous, type StarburstOptions, type StarburstProps, StarburstQuirky, type StarburstResult, StarburstSad, StarburstScared, StarburstSleepy, StarburstSmug, type StarburstStrokeColor, StarburstSurprised, StarburstWinking, defineColors, generate, starburstColor };

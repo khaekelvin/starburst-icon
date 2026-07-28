@@ -1,23 +1,24 @@
-import React from "react";
 import type { StarburstProps } from "../types/index.js";
 import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.js";
+import { starburstColor } from "../utils/color.js";
 
 /**
- * **StarburstBadge12** — In Love
+ * **StarburstInLove** — In Love
  *
  * No eyebrows, filled heart eyes, and a dreamy smile.
  * Default fill: rose pink `#FFB3C6`.
  *
  * @example
  * ```tsx
- * <StarburstBadge12 color="#FFB3C6" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstInLove color="#FFB3C6" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-export function StarburstBadge12({
+export function StarburstInLove({
   color = "#FFB3C6",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0",
 }: StarburstProps) {
+  const _color = starburstColor(color);
   return (
     <svg
       className={className}
@@ -27,7 +28,7 @@ export function StarburstBadge12({
       aria-label="In love starburst character"
     >
       {/* Starburst shape */}
-      <path d={STARBURST_PATH} fill={color} />
+      <path d={STARBURST_PATH} fill={_color} />
 
       {/* Left heart eye */}
       <path

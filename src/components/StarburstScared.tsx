@@ -1,9 +1,9 @@
-import React from "react";
 import type { StarburstProps } from "../types/index.js";
 import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.js";
+import { starburstColor } from "../utils/color.js";
 
 /**
- * **StarburstBadge17** — Scared / Frightened
+ * **StarburstScared** — Scared / Frightened
  *
  * Very high arched eyebrows (higher than Surprised), large wide-open eyes,
  * and a big open-O mouth conveying genuine fear.
@@ -11,14 +11,15 @@ import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.
  *
  * @example
  * ```tsx
- * <StarburstBadge17 color="#FFEDD5" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstScared color="#FFEDD5" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-export function StarburstBadge17({
+export function StarburstScared({
   color = "#FFEDD5",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0",
 }: StarburstProps) {
+  const _color = starburstColor(color);
   return (
     <svg
       className={className}
@@ -28,7 +29,7 @@ export function StarburstBadge17({
       aria-label="Scared starburst character"
     >
       {/* Starburst shape */}
-      <path d={STARBURST_PATH} fill={color} />
+      <path d={STARBURST_PATH} fill={_color} />
 
       {/* Eyebrows: extremely high arches — higher than Surprised */}
       <path

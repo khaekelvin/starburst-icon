@@ -9,14 +9,14 @@ npm install starburst-icon
 ## Usage
 
 ```tsx
-import { StarburstBadge1 } from "starburst-icon";
-import { StarburstBadge12 } from "starburst-icon";
+import { StarburstDetermined } from "starburst-icon";
+import { StarburstInLove } from "starburst-icon";
 
 function App() {
   return (
     <div>
-      <StarburstBadge1 />
-      <StarburstBadge12 className="w-8 h-8" color="#FFB3C6" />
+      <StarburstDetermined />
+      <StarburstInLove className="w-8 h-8" color="#FFB3C6" />
     </div>
   );
 }
@@ -26,39 +26,57 @@ Pick from **18 emotion variants** — each with a canonical color:
 
 ### Light fill (use `strokeColor="black"`)
 
-| Component | Emotion | Default fill | Example |
-|---|---|---|---|
-| `StarburstBadge1` | Determined | `#ED95F4` | |
-| `StarburstBadge2` | Happy | `#F3E777` | |
-| `StarburstBadge3` | Quirky | `#7ED7F5` | |
-| `StarburstBadge5` | Surprised | `#B5EAD7` | |
-| `StarburstBadge6` | Winking | `#FFCBA4` | |
-| `StarburstBadge7` | Sleepy | `#C4B5FD` | |
-| `StarburstBadge8` | Excited | `#FFB347` | |
-| `StarburstBadge9` | Angry | `#FF4040` | |
-| `StarburstBadge10` | Laughing | `#FFE14D` | |
-| `StarburstBadge11` | Nervous | `#BAFAC8` | |
-| `StarburstBadge12` | In Love | `#FFB3C6` | |
-| `StarburstBadge13` | Cool | `#93C5FD` | |
-| `StarburstBadge14` | Confused | `#FDE68A` | |
-| `StarburstBadge15` | Smug | `#DDD6FE` | |
-| `StarburstBadge16` | Crying | `#BFDBFE` | |
-| `StarburstBadge17` | Scared | `#FFEDD5` | |
-| `StarburstBadge18` | Bored | `#E5E7EB` | |
+| Component | Emotion | Default fill |
+|---|---|---|
+| `StarburstDetermined` | Determined | `#ED95F4` |
+| `StarburstHappy` | Happy | `#F3E777` |
+| `StarburstQuirky` | Quirky | `#7ED7F5` |
+| `StarburstSurprised` | Surprised | `#B5EAD7` |
+| `StarburstWinking` | Winking | `#FFCBA4` |
+| `StarburstSleepy` | Sleepy | `#C4B5FD` |
+| `StarburstExcited` | Excited | `#FFB347` |
+| `StarburstAngry` | Angry | `#FF4040` |
+| `StarburstLaughing` | Laughing | `#FFE14D` |
+| `StarburstNervous` | Nervous | `#BAFAC8` |
+| `StarburstInLove` | In Love | `#FFB3C6` |
+| `StarburstCool` | Cool | `#93C5FD` |
+| `StarburstConfused` | Confused | `#FDE68A` |
+| `StarburstSmug` | Smug | `#DDD6FE` |
+| `StarburstCrying` | Crying | `#BFDBFE` |
+| `StarburstScared` | Scared | `#FFEDD5` |
+| `StarburstBored` | Bored | `#E5E7EB` |
 
 ### Dark fill (use `strokeColor="white"`)
 
 | Component | Emotion | Default fill |
 |---|---|---|
-| `SadRedStarburstBadge` | Sad | `#FF6B6B` |
+| `StarburstSad` | Sad | `#FF6B6B` |
 
 ### Random picker
 
 ```tsx
 import { RandomStarburstBadge } from "starburst-icon";
 
-// Deterministic — cycles Badge1/2/3 based on index
+// Deterministic — cycles Determined/Happy/Quirky based on index
 profiles.map((p, i) => <RandomStarburstBadge key={p.id} badgeIndex={i} />)
+```
+
+### Colour names
+
+Use palette names instead of hex codes — they resolve automatically:
+
+```tsx
+<StarburstDetermined color="pastelPink" />
+<StarburstInLove color="rose" strokeColor="white" />
+```
+
+Or register your own names:
+
+```tsx
+import { defineColors } from "starburst-icon";
+
+defineColors({ brand: "#FF5500", success: "#22C55E" });
+<StarburstHappy color="brand" />
 ```
 
 ### Props

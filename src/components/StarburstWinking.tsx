@@ -1,9 +1,9 @@
-import React from "react";
 import type { StarburstProps } from "../types/index.js";
 import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.js";
+import { starburstColor } from "../utils/color.js";
 
 /**
- * **StarburstBadge6** — Winking
+ * **StarburstWinking** — Winking
  *
  * Left eye closed (squinting arc), right eye open dot.
  * Arched right eyebrow, flat left eyebrow, and a smirk.
@@ -11,14 +11,15 @@ import { STARBURST_PATH, STARBURST_VIEWBOX } from "../characters/starburst/path.
  *
  * @example
  * ```tsx
- * <StarburstBadge6 color="#FFCBA4" strokeColor="black" className="w-5 h-5 shrink-0" />
+ * <StarburstWinking color="#FFCBA4" strokeColor="black" className="w-5 h-5 shrink-0" />
  * ```
  */
-export function StarburstBadge6({
+export function StarburstWinking({
   color = "#FFCBA4",
   strokeColor = "black",
   className = "w-5 h-5 shrink-0",
 }: StarburstProps) {
+  const _color = starburstColor(color);
   return (
     <svg
       className={className}
@@ -28,7 +29,7 @@ export function StarburstBadge6({
       aria-label="Winking starburst character"
     >
       {/* Starburst shape */}
-      <path d={STARBURST_PATH} fill={color} />
+      <path d={STARBURST_PATH} fill={_color} />
 
       {/* Left eyebrow: flat / neutral */}
       {/* Right eyebrow: happy arch */}
